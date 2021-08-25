@@ -14,4 +14,11 @@ User.create(name: Faker::Name.name, funds: 1000 )
     )
 end
 
+Stock.create(
+        name: Faker::Finance.ticker,
+        logo_url: Faker::Company.logo,
+        price: rand(1..1000),
+        user_id: User.first.id
+)
+
 puts "Seeding done!"
