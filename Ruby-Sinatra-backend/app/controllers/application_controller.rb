@@ -3,7 +3,7 @@ class ApplicationController < Sinatra::Base
   
   # Add your routes here
   get "/stocks" do
-    stocks = Stock.all
+    stocks = Stock.all.order(:name)
     stocks.to_json
   end
 
@@ -14,6 +14,12 @@ class ApplicationController < Sinatra::Base
 
   post "/stocks" do
     stocks = Stock.create(name: params[:name], price: params[:price], user_id: 0)
+  end
+
+  patch "/stocks/:id" do
+    stock = Stock.find(params[:id])
+    stock.update(user_id: params[:user_id])
+    stock.to_json
   end
   
 end
