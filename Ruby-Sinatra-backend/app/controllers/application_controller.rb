@@ -2,6 +2,7 @@ class ApplicationController < Sinatra::Base
   set :default_content_type, 'application/json'
   
   # Add your routes here
+
   get "/stocks" do
     stocks = Stock.all.order(:name)
     stocks.to_json
